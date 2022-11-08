@@ -1,0 +1,16 @@
+package Array_Easy;
+
+import java.util.Arrays;
+
+public class FindNUniqueIntegersSumuptoZero {
+    public static void main(String[] args) {
+        int n=5;
+        System.out.println(Arrays.toString(sumZero(n)));
+    }
+    public static int[] sumZero(int n) {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = i * 2 - n + 1;
+        return arr;
+    }
+}
