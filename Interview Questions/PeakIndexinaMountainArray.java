@@ -1,5 +1,5 @@
 package interviewQBS;
-
+// https://leetcode.com/problems/peak-index-in-a-mountain-array/description/
 public class PeakIndexinaMountainArray {
 //    it is a mountain array                                                                                                2
 //    because it's a combination of ascending order and descending order                                                 0     1
