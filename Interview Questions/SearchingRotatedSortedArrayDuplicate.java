@@ -1,14 +1,14 @@
 package interviewQBS;
 
-public class SearchinRotatedSortedArray {
+public class SearchingRotatedSortedArrayDuplicate {
     public static void main(String[] args) {
-        int[] nums = {4,5,6,7,0,1,2};
+        int[] nums = {2,2,2,2,9,2};
         int target = 2;
         System.out.println( search(nums,target));
     }
 
     public static int search(int[] nums, int target) {
-        int pivot = findpivot(nums);
+        int pivot = findpivotForDuplicate(nums);
         //  this if will execute when array isn't rotated
         if(pivot == -1)
         {
@@ -49,8 +49,8 @@ public class SearchinRotatedSortedArray {
         return -1;
     }
 
-//    This pivot function not work for the duplicate values
-    public static int findpivot(int[] nums)
+    //    This pivet will work for duplicate value in the array
+    public static int findpivotForDuplicate(int[] nums)
     {
         int start = 0;
         int end = nums.length - 1;
@@ -66,13 +66,30 @@ public class SearchinRotatedSortedArray {
             {
                 return mid - 1;
             }
-            if(nums[mid] <= nums[start])        // if current element is less than the start element than
-            {                                 // ignore the right side of the array part
-                end = mid - 1;
+//            if  elements at middle,start and end are equal then just skip the duplicate
+            if(nums[mid] == nums[start] && nums[mid] == nums[end])
+            {
+//                skipping the duplicate values from the both ends
+//                What if start and end elements were be the pivot ??
+//                check if start element is pivot
+                if(nums[start] > nums[start + 1])
+                {   // What if start
+                    return start;
+                }
+                start++;
+//                check if end element is pivot
+                if(nums[end] < nums[end - 1])
+                {
+                    return end - 1;
+                }
+                end--;
             }
-        else                                   // if current element is greater than the start element than
-            {                                 // ignore the left side of the array part
+//            if left side is sorted then pivot should be in right
+            else if (nums[start] < nums[mid] || (nums[start] == nums[mid] && nums[mid] > end)) {
                 start = mid + 1;
+            }
+            else {
+                end = mid - 1;
             }
         }
         return -1;
