@@ -21,6 +21,5 @@ public class RichestCustomerWealth {
                 if(temp_result>result) result=temp_result;
             }
             return result;
-
     }
 }
